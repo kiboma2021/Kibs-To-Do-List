@@ -27,7 +27,8 @@ const addTodo = toDovalue => {
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {
     i.addEventListener('click', () => {
-      console.log("Button clicked")
+      //i.parentElement.classList.toggle('checkedContainer');
+      i.nextElementSibling.classList.toggle('check-to-do');
     })
   })
 };

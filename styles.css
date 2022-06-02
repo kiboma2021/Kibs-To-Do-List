@@ -21,3 +21,7 @@ header {
 .remove-icon {
   display: none;
 }
+
+.check-to-do {
+  text-decoration: line-through;
+}
