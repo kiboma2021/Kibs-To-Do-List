@@ -33,6 +33,10 @@ const addTodo = toDovalue => {
       i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
     })
   })
+  //Add items to Local Storage
+  const object = new myObject (toDovalue, false, checkbox.length-1 )
+  myArray.push(object);
+  localStorage.setItem ('List', JSON.stringify(myArray));
 };
 
 //Add event lister when enter is clicked while in input field
