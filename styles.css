@@ -15,4 +15,9 @@ header {
   width: 30%;
   background-color: white;
   padding: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.202);
+}
+
+.remove-icon {
+  display: none;
 }
