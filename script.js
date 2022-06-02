@@ -19,7 +19,7 @@ const addTodo = toDovalue => {
   toDocontainer.innerHTML += `
   <input type="checkbox" class="checkbox">
   <span>${toDovalue}</span>
-  <i class="fa fa-ellipsis-v"></i>
+   <div><i class="fa fa-ellipsis-v"></i></div>
    <div class="remove-icon"><i class="fa fa-trash-o"></i></div>
   `
   todoList.appendChild(toDocontainer);
@@ -29,6 +29,8 @@ const addTodo = toDovalue => {
     i.addEventListener('click', () => {
       //i.parentElement.classList.toggle('checkedContainer');
       i.nextElementSibling.classList.toggle('check-to-do');
+      i.parentElement.lastElementChild.classList.toggle('trash-active');
+      i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
     })
   })
 };

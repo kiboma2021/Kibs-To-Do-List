@@ -22,6 +22,15 @@ header {
   display: none;
 }
 
+.edit-disabled {
+  display: none;
+}
+
+.trash-active {
+  display: block;
+}
+
 .check-to-do {
   text-decoration: line-through;
 }
+
