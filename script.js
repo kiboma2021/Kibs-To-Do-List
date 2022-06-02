@@ -23,6 +23,13 @@ const addTodo = toDovalue => {
    <div class="remove-icon"><i class="fa fa-trash-o"></i></div>
   `
   todoList.appendChild(toDocontainer);
+
+  const checkbox = document.querySelectorAll('.checkbox');
+  checkbox.forEach(i => {
+    i.addEventListener('click', () => {
+      console.log("Button clicked")
+    })
+  })
 };
 
 //Add event lister when enter is clicked while in input field
