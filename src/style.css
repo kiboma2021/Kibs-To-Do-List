@@ -1,21 +1,21 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: rgba(240, 248, 255, 0.904);
+  background-color: white;
 }
 
 header {
   display:flex;
   justify-content: space-between;
   align-items: center;
-
+  padding: 1px 10px;
 }
 
 .content {
-  width: 30%;
+  width: 40%;
+  margin-top: 5%;
   background-color: white;
-  padding: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.202);
+  border: 2px solid rgb(197, 196, 196);
 }
 
 .remove-icon {
@@ -34,12 +34,29 @@ header {
   text-decoration: line-through;
 }
 
+#add-input {
+  width: 99%;
+  height: 40px;
+  border: none;
+  border-top: 2px solid rgb(208, 204, 204);
+  border-bottom: 2px solid rgb(208, 204, 204);
+}
+
 .toDocontainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 40px;
+  border-bottom: 2px solid rgb(184, 181, 181);
 }
 
 .checkedContainer {
   background-color: antiquewhite;
+}
+
+#clear-content {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

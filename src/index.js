@@ -1,4 +1,5 @@
-import '../node_modules/@font-awesome/4.7.0/css/font-awesome.min.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
 //Reference HTML
@@ -15,7 +16,15 @@ class myObject {
   }
 }
 
-const myArray = [];
+const myArray = [
+  { description: 'First  Todo  today', complete: false, index: 5467890 },
+  { description: 'This is another todo', complete: false, index: 234 },
+  {
+    description: 'And am going to finish my todo here',
+    complete: false,
+    index: 867234,
+  },
+];
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
   toDocontainer.className = 'toDocontainer';
