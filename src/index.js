@@ -16,20 +16,12 @@ class myObject {
   }
 }
 
-const myArray = [
-  { description: 'First  Todo  today', complete: false, index: 5467890 },
-  { description: 'This is another todo', complete: false, index: 234 },
-  {
-    description: 'And am going to finish my todo here',
-    complete: false,
-    index: 867234,
-  },
-];
+const myArray = [];
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
   toDocontainer.className = 'toDocontainer';
   toDocontainer.innerHTML += `
-  <input type="checkbox" class="checkbox">
+  <input type="checkbox" id="check-box-${}" class="checkbox">
   <span>${toDovalue}</span>
    <div><i class="fa fa-ellipsis-v"></i></div>
   <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
@@ -44,7 +36,8 @@ const addTodo = toDovalue => {
       i.parentElement.lastElementChild.classList.toggle('trash-active');
       i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
     })
-  })
+  }) 
+  
   //Add items to Local Storage
   const object = new myObject (toDovalue, false, checkbox.length-1 )
   myArray.push(object);

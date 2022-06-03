@@ -48,6 +48,7 @@ header {
   justify-content: space-between;
   height: 40px;
   border-bottom: 2px solid rgb(184, 181, 181);
+  padding-right: 2px;
 }
 
 .checkedContainer {
@@ -55,8 +56,11 @@ header {
 }
 
 #clear-content {
+  font-size: 18px;
+  color: rgb(79, 75, 75);
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(251, 245, 245);;
 }
