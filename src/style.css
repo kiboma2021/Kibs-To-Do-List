@@ -38,14 +38,12 @@ header {
   width: 99%;
   height: 40px;
   border: none;
-  border-top: 2px solid rgb(208, 204, 204);
-  border-bottom: 2px solid rgb(208, 204, 204);
 }
 
 .toDocontainer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   height: 40px;
   border-bottom: 2px solid rgb(184, 181, 181);
   padding: 1px 10px;
@@ -63,4 +61,17 @@ header {
   justify-content: center;
   align-items: center;
   background-color: rgb(251, 245, 245);;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  border-top: 2px solid rgb(208, 204, 204);
+  border-bottom: 2px solid rgb(208, 204, 204);
+}
+
+#enter-arrow {
+  color: rgb(181, 176, 176);
+  padding-right: 10px;
 }

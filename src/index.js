@@ -16,7 +16,7 @@ class myObject {
   }
 }
 
-const myArray = [
+const myTodoList = [
   {
     description: 'Practice using Bootsrap',
     completed: false,
@@ -39,33 +39,31 @@ const myArray = [
   },
 ];
 
-myArray.sort((a, b) => a.index - b.index);
+myTodoList.sort((a, b) => a.index - b.index);
 
-myArray.forEach((list) => {
-  for (let i = 0; i < myArray.length; i += 1) {
-    if (myArray[i] === myArray.index) {
+myTodoList.forEach((list) => {
+  for (let i = 0; i < myTodoList.length; i += 1) {
+    if (myTodoList[i] === myTodoList.index) {
       return;
     }
   }
-  const card = `
-  <input type="checkbox" class="checkbox">
-  <span>${list.description}</span>
+
+  const toDocontainer = document.createElement('div');
+  toDocontainer.className = 'toDocontainer';
+  toDocontainer.innerHTML += `
+  <span> <input type="checkbox" class="checkbox">${list.description}</span>
    <div><i class="fa fa-ellipsis-v"></i></div>
   <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
   `
-  document.getElementById('display-list').innerHTML += card;
+  todoList.appendChild(toDocontainer);
 });
-
-
-
 
 
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
   toDocontainer.className = 'toDocontainer';
   toDocontainer.innerHTML += `
-  <input type="checkbox" class="checkbox">
-  <span>${toDovalue}</span>
+  <span><input type="checkbox" class="checkbox">${toDovalue}</span>
    <div><i class="fa fa-ellipsis-v"></i></div>
   <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
   `
@@ -84,8 +82,8 @@ const addTodo = toDovalue => {
   
   //Add items to Local Storage
   const object = new myObject (toDovalue, false, checkbox.length-1 )
-  myArray.push(object);
-  localStorage.setItem ('List', JSON.stringify(myArray));
+  myTodoList.push(object);
+  localStorage.setItem ('List', JSON.stringify(myTodoList));
 
   //Edit todo list
   const editIcons = document.querySelectorAll(".fa-ellipsis-v");
