@@ -1,0 +1,84 @@
+body {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 10px;
+}
+
+.content {
+  width: 40%;
+  margin-top: 5%;
+  background-color: white;
+  border: 2px solid rgb(197, 196, 196);
+}
+
+.remove-icon {
+  display: none;
+}
+
+.edit-disabled {
+  display: none;
+}
+
+.trash-active {
+  display: block;
+}
+
+.check-to-do {
+  text-decoration: line-through;
+}
+
+#add-input {
+  width: 99%;
+  height: 40px;
+  border: none;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+input::placeholder {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.toDocontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  border-bottom: 2px solid rgb(184, 181, 181);
+  padding: 1px 10px;
+}
+
+.checkedContainer {
+  background-color: antiquewhite;
+}
+
+#clear-content {
+  font-size: 18px;
+  color: rgb(79, 75, 75);
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(251, 245, 245);
+}
+
+form {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  border-top: 2px solid rgb(208, 204, 204);
+  border-bottom: 2px solid rgb(208, 204, 204);
+}
+
+#enter-arrow {
+  color: rgb(181, 176, 176);
+  padding-right: 10px;
+}
