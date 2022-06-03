@@ -39,3 +39,7 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+
+.checkedContainer {
+  background-color: antiquewhite;
+}
