@@ -1,5 +1,6 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
+import { stringify } from 'json5';
 import './style.css';
 
 //Reference HTML
@@ -133,5 +134,27 @@ const getFromLocal = () => {
       })
     })
   })
-  
+  //Get the checkbox
+  const checkbox = document.querySelectorAll('.checkbox');
+  checkbox.forEach(i => {
+    i.addEventListener('click', () => {
+      i.parentElement.classList.toggle('checkedContainer');
+      i.nextElementSibling.classList.toggle('check-to-do');
+      i.parentElement.lastElementChild.classList.toggle('trash-active');
+      i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
+    })
+  })
+
+  //Remove from the list
+  const removeList = document.querySelectorAll('.remove-icon');
+  removeList.forEach (i => {
+    i.addEventListener('click', () => {
+      removeTodo(i.parentElement);
+    })
+  })
+
+  //Now send data to local storage
+  localStorage.setItem('List',JSON.stringify(myTodoList));
 }
+
+window.addEventListener('load',getFromLocal);
