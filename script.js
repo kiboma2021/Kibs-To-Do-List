@@ -20,7 +20,7 @@ const addTodo = toDovalue => {
   <input type="checkbox" class="checkbox">
   <span>${toDovalue}</span>
    <div><i class="fa fa-ellipsis-v"></i></div>
-   <div class="remove-icon"><i class="fa fa-trash-o"></i></div>
+  <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
   `
   todoList.appendChild(toDocontainer);
 
@@ -37,7 +37,24 @@ const addTodo = toDovalue => {
   const object = new myObject (toDovalue, false, checkbox.length-1 )
   myArray.push(object);
   localStorage.setItem ('List', JSON.stringify(myArray));
+
+  //Edit todo list
+  const editIcons = document.querySelectorAll(".fa-ellipsis-v");
+  editIcons.forEach (i => {
+    i.addEventListener ('click', ()=> {
+      editTodo();
+    })
+  })
 };
+
+//Add editTodo function
+const editTodo = (toDocontainer, todo) => {
+  const editInput = document.createElement('input');
+  editInput.type = "text";
+  editInput.className = "editInput";
+  editInput.value = todo.textContent;
+
+}
 
 //Add event lister when enter is clicked while in input field
 myInput.addEventListener ('keypress', e => {
