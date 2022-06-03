@@ -1,3 +1,5 @@
+import './style.css';
+
 //Reference HTML
 const myInput = document.querySelector('input');
 const clearContent = document.querySelector('#clear-content');
