@@ -58,7 +58,7 @@ const addTodo = toDovalue => {
   const removeList = document.querySelectorAll('.remove-icon');
   removeList.forEach (i => {
     i.addEventListener('click', () => {
-      removeTodo();
+      removeTodo(i.parentElement);
     })
   })
 };
@@ -89,6 +89,18 @@ const editTodo = (toDocontainer, todo) => {
   })
 }
 
+//Remove Items from to do list
+const removeTodo = (todo) => {
+  todoList.removeChild(todo);
+
+
+
+
+
+
+ 
+}
+
 //Add event lister when enter is clicked while in input field
 myInput.addEventListener ('keypress', e => {
   if (e.key === 'Enter' && myInput.value ) {
@@ -97,3 +109,29 @@ myInput.addEventListener ('keypress', e => {
     myInput.value = null;
   }
 })
+
+//Get data from local storage
+const getFromLocal = () => {
+  const data = JSON.parse(localStorage.getItem('List'));
+  data.map (i => {
+    myTodoList.push(i);
+    const toDocontainer = document.createElement('div');
+    toDocontainer.className = 'toDocontainer';
+    toDocontainer.innerHTML += `
+    <input type="checkbox" class="checkbox">
+    <span>${i.description}</span>
+    <span class="edit-to-do"> <i class="fa fa-ellipsis-v"></i></span>
+    <span class="remove-icon"><i class="fa fa-trash-alt" ></i></span>
+    `
+    todoList.appendChild(toDocontainer);
+
+    //Edit todo list
+    const editIcons = document.querySelectorAll('.edit-to-do');
+    editIcons.forEach (i => {
+      i.addEventListener('click', () => {
+        editTodo(toDocontainer, i.previousElementSibling);
+      })
+    })
+  })
+  
+}
