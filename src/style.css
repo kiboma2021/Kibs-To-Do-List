@@ -5,7 +5,7 @@ body {
 }
 
 header {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1px 10px;
@@ -67,7 +67,7 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(251, 245, 245);;
+  background-color: rgb(251, 245, 245);
 }
 
 form {
