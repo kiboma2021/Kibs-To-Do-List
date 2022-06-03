@@ -4,6 +4,7 @@ import './style.css';
 
 //Reference HTML
 const myInput = document.querySelector('input');
+// eslint-disable-next-line no-unused-vars
 const clearContent = document.querySelector('#clear-content');
 const todoList = document.querySelector('#display-list');
 
