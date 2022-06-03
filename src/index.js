@@ -17,48 +17,7 @@ class myObject {
   }
 }
 
-const myTodoList = [
-  {
-    description: 'Practice using Bootsrap',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'Do coding challenge',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Attend Morning session',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Meet with my coding partners',
-    completed: false,
-    index: 1,
-  },
-];
-
-myTodoList.sort((a, b) => a.index - b.index);
-
-myTodoList.forEach((list) => {
-  for (let i = 0; i < myTodoList.length; i += 1) {
-    if (myTodoList[i] === myTodoList.index) {
-      return;
-    }
-  }
-
-  const toDocontainer = document.createElement('div');
-  toDocontainer.className = 'toDocontainer';
-  toDocontainer.innerHTML += `
-  <span> <input type="checkbox" class="checkbox">${list.description}</span>
-   <div><i class="fa fa-ellipsis-v"></i></div>
-  <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
-  `
-  todoList.appendChild(toDocontainer);
-});
-
+const myTodoList = [];
 
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
