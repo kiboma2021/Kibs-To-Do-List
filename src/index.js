@@ -23,9 +23,10 @@ const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
   toDocontainer.className = 'toDocontainer';
   toDocontainer.innerHTML += `
-  <span><input type="checkbox" class="checkbox">${toDovalue}</span>
-   <div><i class="fa fa-ellipsis-v"></i></div>
-  <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
+  <input type="checkbox" class="checkbox">
+  <span>${toDovalue}</span>
+  <span class="edit-to-do"> <i class="fa fa-ellipsis-v"></i></span>
+  <span class="remove-icon"><i class="fa fa-trash-alt" ></i></span>
   `
   todoList.appendChild(toDocontainer);
 
@@ -46,9 +47,9 @@ const addTodo = toDovalue => {
   localStorage.setItem ('List', JSON.stringify(myTodoList));
 
   //Edit todo list
-  const editIcons = document.querySelectorAll(".fa-ellipsis-v");
+  const editIcons = document.querySelectorAll('.edit-to-do');
   editIcons.forEach (i => {
-    i.addEventListener ('click', ()=> {
+    i.addEventListener('click', () => {
       editTodo(toDocontainer, i.previousElementSibling);
     })
   })
