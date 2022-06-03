@@ -16,17 +16,61 @@ class myObject {
   }
 }
 
-const myArray = [];
+const myArray = [
+  {
+    description: 'Practice using Bootsrap',
+    completed: false,
+    index: 4,
+  },
+  {
+    description: 'Do coding challenge',
+    completed: false,
+    index: 3,
+  },
+  {
+    description: 'Attend Morning session',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'Meet with my coding partners',
+    completed: false,
+    index: 1,
+  },
+];
+
+myArray.sort((a, b) => a.index - b.index);
+
+myArray.forEach((list) => {
+  for (let i = 0; i < myArray.length; i += 1) {
+    if (myArray[i] === myArray.index) {
+      return;
+    }
+  }
+  const card = `
+  <input type="checkbox" class="checkbox">
+  <span>${list.description}</span>
+   <div><i class="fa fa-ellipsis-v"></i></div>
+  <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
+  `
+  document.getElementById('display-list').innerHTML += card;
+});
+
+
+
+
+
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
   toDocontainer.className = 'toDocontainer';
   toDocontainer.innerHTML += `
-  <input type="checkbox" id="check-box-${}" class="checkbox">
+  <input type="checkbox" class="checkbox">
   <span>${toDovalue}</span>
    <div><i class="fa fa-ellipsis-v"></i></div>
   <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
   `
   todoList.appendChild(toDocontainer);
+
 
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {

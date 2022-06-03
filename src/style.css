@@ -48,7 +48,7 @@ header {
   justify-content: space-between;
   height: 40px;
   border-bottom: 2px solid rgb(184, 181, 181);
-  padding-right: 2px;
+  padding: 1px 10px;
 }
 
 .checkedContainer {
