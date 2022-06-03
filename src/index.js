@@ -53,6 +53,14 @@ const addTodo = toDovalue => {
       editTodo(toDocontainer, i.previousElementSibling);
     })
   })
+
+  //Remove from the list
+  const removeList = document.querySelectorAll('.remove-icon');
+  removeList.forEach (i => {
+    i.addEventListener('click', () => {
+      removeTodo();
+    })
+  })
 };
 
 //Add editTodo function
