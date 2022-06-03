@@ -1,6 +1,5 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
-import { stringify } from 'json5';
 import './style.css';
 
 //Reference HTML
@@ -39,6 +38,7 @@ const addTodo = toDovalue => {
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
       i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
+      updateLocal();
     })
   }) 
   
@@ -93,9 +93,11 @@ const editTodo = (toDocontainer, todo) => {
 //Remove Items from to do list
 const removeTodo = (todo) => {
   todoList.removeChild(todo);
-
-
-
+  let count = 0;
+  const localData = JSON.parse(localStorage.getItem('List'));
+  const data = Array.from(localData).filter (i => i.complited === false);
+  data.map (i => i.index = count++);
+  localStorage.setItem ('List', JSON.stringify(data));
 
 
 
@@ -120,7 +122,7 @@ const getFromLocal = () => {
     toDocontainer.className = 'toDocontainer';
     toDocontainer.innerHTML += `
     <input type="checkbox" class="checkbox">
-    <span>${i.description}</span>
+    <span class="description">${i.description}</span>
     <span class="edit-to-do"> <i class="fa fa-ellipsis-v"></i></span>
     <span class="remove-icon"><i class="fa fa-trash-alt" ></i></span>
     `
@@ -142,6 +144,7 @@ const getFromLocal = () => {
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
       i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
+      updateLocal();
     })
   })
 
@@ -158,3 +161,17 @@ const getFromLocal = () => {
 }
 
 window.addEventListener('load',getFromLocal);
+
+//Update Local storage
+const updateLocal = () => {
+  const localData = JSON.parse(localStorage.getItem('List'));
+  const todos = document.querySelectorAll(".description");
+  for (let i=1; i<todos.length; i++) {
+    if(todos[i].classList.contains('check-to-do')) {
+      localData[i].complited == true;
+    } else {
+      localData[i].complited == false;
+    }
+  }
+  localStorage.setItem('List',JSON.stringify(localData));
+}
