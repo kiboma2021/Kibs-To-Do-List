@@ -1,3 +1,4 @@
+import '../node_modules/@font-awesome/4.7.0/css/font-awesome.min.css';
 import './style.css';
 
 //Reference HTML
