@@ -33,7 +33,7 @@ const addTodo = toDovalue => {
 
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {
-    i.addEventListener('click', () => {
+    i.addEventListener('change', () => {
       i.parentElement.classList.toggle('checkedContainer');
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
@@ -137,7 +137,7 @@ const getFromLocal = () => {
   //Get the checkbox
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {
-    i.addEventListener('click', () => {
+    i.addEventListener('change', () => {
       i.parentElement.classList.toggle('checkedContainer');
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
