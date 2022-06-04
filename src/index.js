@@ -42,7 +42,7 @@ const addTodo = toDovalue => {
   }) 
   
   //Add items to Local Storage
-  const object = new myObject (toDovalue, false, checkbox.length-1 )
+  const object = new myObject (toDovalue, false, checkbox.length )
   myTodoList.push(object);
   localStorage.setItem ('List', JSON.stringify(myTodoList));
 
@@ -93,11 +93,12 @@ const editTodo = (toDocontainer, todo) => {
 //Remove Items from to do list
 const removeTodo = (todo) => {
   todoList.removeChild(todo);
-  let count = 0;
+  let count = 1;
   const localData = JSON.parse(localStorage.getItem('List'));
   const data = Array.from(localData).filter (i => i.complited === false);
   data.map (i => i.index = count++);
   localStorage.setItem ('List', JSON.stringify(data));
+  window.location.reload();
 }
 
 //Add event lister when enter is clicked while in input field
@@ -181,10 +182,11 @@ const clearAll = () => {
       removeTodo(i);
     }
   })
-  let count = 0;
+  let count = 1;
   const data = Array.from(localData).filter(i => i.complited == false);
   data.map (i => i.index = count++);
   localStorage.setItem ('List', JSON.stringify(data));
+  window.location.reload();
 }
 
 clearContent.addEventListener ('click', clearAll);
