@@ -4,7 +4,6 @@ import './style.css';
 
 //Reference HTML
 const myInput = document.querySelector('input');
-// eslint-disable-next-line no-unused-vars
 const clearContent = document.querySelector('#clear-content');
 const todoList = document.querySelector('#display-list');
 
@@ -17,56 +16,16 @@ class myObject {
   }
 }
 
-const myTodoList = [
-  {
-    description: 'Practice using Bootsrap',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'Do coding challenge',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Attend Morning session',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Meet with my coding partners',
-    completed: false,
-    index: 1,
-  },
-];
-
-myTodoList.sort((a, b) => a.index - b.index);
-
-myTodoList.forEach((list) => {
-  for (let i = 0; i < myTodoList.length; i += 1) {
-    if (myTodoList[i] === myTodoList.index) {
-      return;
-    }
-  }
-
-  const toDocontainer = document.createElement('div');
-  toDocontainer.className = 'toDocontainer';
-  toDocontainer.innerHTML += `
-  <span> <input type="checkbox" class="checkbox">${list.description}</span>
-   <div><i class="fa fa-ellipsis-v"></i></div>
-  <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
-  `
-  todoList.appendChild(toDocontainer);
-});
-
+const myTodoList = [];
 
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
   toDocontainer.className = 'toDocontainer';
   toDocontainer.innerHTML += `
-  <span><input type="checkbox" class="checkbox">${toDovalue}</span>
-   <div><i class="fa fa-ellipsis-v"></i></div>
-  <div class="remove-icon"> <i class="fa fa-trash-o" ></i></div>
+  <input type="checkbox" class="checkbox">
+  <span>${toDovalue}</span>
+  <span class="edit-to-do"> <i class="fa fa-ellipsis-v"></i></span>
+  <span class="remove-icon"><i class="fa fa-trash-alt" ></i></span>
   `
   todoList.appendChild(toDocontainer);
 
@@ -78,19 +37,29 @@ const addTodo = toDovalue => {
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
       i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
+      updateLocal();
     })
   }) 
   
   //Add items to Local Storage
-  const object = new myObject (toDovalue, false, checkbox.length-1 )
+  const object = new myObject (toDovalue, false, checkbox.length )
   myTodoList.push(object);
   localStorage.setItem ('List', JSON.stringify(myTodoList));
 
   //Edit todo list
-  const editIcons = document.querySelectorAll(".fa-ellipsis-v");
+  const editIcons = document.querySelectorAll('.edit-to-do');
   editIcons.forEach (i => {
-    i.addEventListener ('click', ()=> {
+    i.addEventListener('click', () => {
+      i.parentElement.classList.add('checkedContainer');
       editTodo(toDocontainer, i.previousElementSibling);
+    })
+  })
+
+  //Remove from the list
+  const removeList = document.querySelectorAll('.remove-icon');
+  removeList.forEach (i => {
+    i.addEventListener('click', () => {
+      removeTodo(i.parentElement);
     })
   })
 };
@@ -108,7 +77,7 @@ const editTodo = (toDocontainer, todo) => {
     if (e.key === 'Enter') {
       const editContainers = document.querySelectorAll('.toDocontainer');
       const localData = JSON.parse (localStorage.getItem('List'));
-      for (let i=1; i<editContainers.length; i++) {
+      for (let i=0; i<editContainers.length; i++) {
         if (editContainers[i].classList.contains('checkedContainer')) {
           localData[i].description = editInput.value;
           localStorage.setItem ('List', JSON.stringify(localData));
@@ -121,11 +90,103 @@ const editTodo = (toDocontainer, todo) => {
   })
 }
 
+//Remove Items from to do list
+const removeTodo = (todo) => {
+  todoList.removeChild(todo);
+  let count = 1;
+  const localData = JSON.parse(localStorage.getItem('List'));
+  const data = Array.from(localData).filter (i => i.complited === false);
+  data.map (i => i.index = count++);
+  localStorage.setItem ('List', JSON.stringify(data));
+  window.location.reload();
+}
+
 //Add event lister when enter is clicked while in input field
 myInput.addEventListener ('keypress', e => {
   if (e.key === 'Enter' && myInput.value ) {
-    e.preventDefault();
     addTodo(myInput.value);
     myInput.value = null;
   }
 })
+
+//Get data from local storage
+const getFromLocal = () => {
+  const data = JSON.parse(localStorage.getItem('List'));
+  data.map (i => {
+    myTodoList.push(i);
+    const toDocontainer = document.createElement('div');
+    toDocontainer.className = 'toDocontainer';
+    toDocontainer.innerHTML += `
+    <input type="checkbox" class="checkbox">
+    <span class="description">${i.description}</span>
+    <span class="edit-to-do"> <i class="fa fa-ellipsis-v"></i></span>
+    <span class="remove-icon"><i class="fa fa-trash-alt" ></i></span>
+    `
+    todoList.appendChild(toDocontainer);
+
+    //Edit todo list
+    const editIcons = document.querySelectorAll('.edit-to-do');
+    editIcons.forEach (i => {
+      i.addEventListener('click', () => {
+        i.parentElement.classList.add('checkedContainer');
+        editTodo(toDocontainer, i.previousElementSibling);
+      })
+    })
+  })
+  //Get the checkbox
+  const checkbox = document.querySelectorAll('.checkbox');
+  checkbox.forEach(i => {
+    i.addEventListener('click', () => {
+      i.parentElement.classList.toggle('checkedContainer');
+      i.nextElementSibling.classList.toggle('check-to-do');
+      i.parentElement.lastElementChild.classList.toggle('trash-active');
+      i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
+      updateLocal();
+    })
+  })
+
+  //Remove from the list
+  const removeList = document.querySelectorAll('.remove-icon');
+  removeList.forEach (i => {
+    i.addEventListener('click', () => {
+      removeTodo(i.parentElement);
+    })
+  })
+
+  //Now send data to local storage
+  localStorage.setItem('List',JSON.stringify(myTodoList));
+}
+
+window.addEventListener('load',getFromLocal);
+
+//Update Local storage
+const updateLocal = () => {
+  const localData = JSON.parse(localStorage.getItem('List'));
+  const todos = document.querySelectorAll(".description");
+  for (let i=0; i<todos.length; i++) {
+    if(todos[i].classList.contains('check-to-do')) {
+      localData[i].complited = true;
+    } else {
+      localData[i].complited = false;
+    }
+  }
+  localStorage.setItem('List',JSON.stringify(localData));
+}
+
+//Clear All
+const clearAll = () => {
+  const localData = JSON.parse(localStorage.getItem('List'));
+  const todo_container = document.querySelectorAll('.toDocontainer');
+  todo_container.forEach (i => {
+    if (i.classList.contains('checkedContainer')) {
+      removeTodo(i);
+    }
+  })
+  let count = 1;
+  const data = Array.from(localData).filter(i => i.complited == false);
+  data.map (i => i.index = count++);
+  localStorage.setItem ('List', JSON.stringify(data));
+  window.location.reload();
+}
+
+clearContent.addEventListener ('click', clearAll);
