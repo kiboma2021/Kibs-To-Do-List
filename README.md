@@ -44,13 +44,6 @@
 
 - Feel free to check the issues page.
 
-
-# Contributor's code 
-
-## This is the link to Diego Hernández's code
-`https://github.com/robinbenitezmora/Mobil-Version/pull/2`
-
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
