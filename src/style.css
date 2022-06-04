@@ -68,6 +68,7 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   background-color: rgb(251, 245, 245);
+  cursor: pointer;
 }
 
 form {

@@ -4,7 +4,6 @@ import './style.css';
 
 //Reference HTML
 const myInput = document.querySelector('input');
-// eslint-disable-next-line no-unused-vars
 const clearContent = document.querySelector('#clear-content');
 const todoList = document.querySelector('#display-list');
 
@@ -51,6 +50,7 @@ const addTodo = toDovalue => {
   const editIcons = document.querySelectorAll('.edit-to-do');
   editIcons.forEach (i => {
     i.addEventListener('click', () => {
+      i.parentElement.classList.add('checkedContainer');
       editTodo(toDocontainer, i.previousElementSibling);
     })
   })
@@ -77,7 +77,7 @@ const editTodo = (toDocontainer, todo) => {
     if (e.key === 'Enter') {
       const editContainers = document.querySelectorAll('.toDocontainer');
       const localData = JSON.parse (localStorage.getItem('List'));
-      for (let i=1; i<editContainers.length; i++) {
+      for (let i=0; i<editContainers.length; i++) {
         if (editContainers[i].classList.contains('checkedContainer')) {
           localData[i].description = editInput.value;
           localStorage.setItem ('List', JSON.stringify(localData));
@@ -98,10 +98,6 @@ const removeTodo = (todo) => {
   const data = Array.from(localData).filter (i => i.complited === false);
   data.map (i => i.index = count++);
   localStorage.setItem ('List', JSON.stringify(data));
-
-
-
- 
 }
 
 //Add event lister when enter is clicked while in input field
@@ -132,6 +128,7 @@ const getFromLocal = () => {
     const editIcons = document.querySelectorAll('.edit-to-do');
     editIcons.forEach (i => {
       i.addEventListener('click', () => {
+        i.parentElement.classList.add('checkedContainer');
         editTodo(toDocontainer, i.previousElementSibling);
       })
     })
@@ -175,3 +172,20 @@ const updateLocal = () => {
   }
   localStorage.setItem('List',JSON.stringify(localData));
 }
+
+//Clear All
+const clearAll = () => {
+  const localData = JSON.parse(localStorage.getItem('List'));
+  const todo_container = document.querySelectorAll('.toDocontainer');
+  todo_container.forEach (i => {
+    if (i.classList.contains('checkedContainer')) {
+      removeTodo(i);
+    }
+  })
+  let count = 0;
+  const data = Array.from(localData).filter(i => i.complited == false);
+  data.map (i => i.index = count++);
+  localStorage.setItem ('List', JSON.stringify(data));
+}
+
+clearContent.addEventListener ('click', clearAll);
