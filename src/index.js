@@ -103,7 +103,6 @@ const removeTodo = (todo) => {
 //Add event lister when enter is clicked while in input field
 myInput.addEventListener ('keypress', e => {
   if (e.key === 'Enter' && myInput.value ) {
-    e.preventDefault();
     addTodo(myInput.value);
     myInput.value = null;
   }
