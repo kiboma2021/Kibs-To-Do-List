@@ -1,6 +1,7 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
+import updateLocal from './status_update.js'
 
 //Reference HTML
 const myInput = document.querySelector('input');
@@ -32,7 +33,7 @@ const addTodo = toDovalue => {
 
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {
-    i.addEventListener('click', () => {
+    i.addEventListener('change', () => {
       i.parentElement.classList.toggle('checkedContainer');
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
@@ -136,7 +137,7 @@ const getFromLocal = () => {
   //Get the checkbox
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {
-    i.addEventListener('click', () => {
+    i.addEventListener('change', () => {
       i.parentElement.classList.toggle('checkedContainer');
       i.nextElementSibling.classList.toggle('check-to-do');
       i.parentElement.lastElementChild.classList.toggle('trash-active');
@@ -158,20 +159,6 @@ const getFromLocal = () => {
 }
 
 window.addEventListener('load',getFromLocal);
-
-//Update Local storage
-const updateLocal = () => {
-  const localData = JSON.parse(localStorage.getItem('List'));
-  const todos = document.querySelectorAll(".description");
-  for (let i=0; i<todos.length; i++) {
-    if(todos[i].classList.contains('check-to-do')) {
-      localData[i].complited = true;
-    } else {
-      localData[i].complited = false;
-    }
-  }
-  localStorage.setItem('List',JSON.stringify(localData));
-}
 
 //Clear All
 const clearAll = () => {
