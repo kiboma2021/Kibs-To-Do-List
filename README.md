@@ -9,6 +9,10 @@
 - JavaScript
 - Webpack
 
+## Live Demo
+
+[Live Demo Link](https://kiboma2021.github.io/Kibs-To-Do-List/)
+
 ## Getting Started
 
 - Clone the repository
