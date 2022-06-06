@@ -94,12 +94,14 @@ const editTodo = (toDocontainer, todo) => {
 //Remove Items from to do list
 const removeTodo = (todo) => {
   todoList.removeChild(todo);
+  
   let count = 1;
   const localData = JSON.parse(localStorage.getItem('List'));
   const data = Array.from(localData).filter (i => i.complited === false);
   data.map (i => i.index = count++);
   localStorage.setItem ('List', JSON.stringify(data));
   window.location.reload();
+  
 }
 
 //Add event lister when enter is clicked while in input field
@@ -177,3 +179,4 @@ const clearAll = () => {
 }
 
 clearContent.addEventListener ('click', clearAll);
+
