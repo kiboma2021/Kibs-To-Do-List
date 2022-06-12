@@ -13,8 +13,7 @@ module.exports = {
     }),
   ],
   output: {
-   // publicPath: '/dist/',
-    filename: '[name].js',
+    filename: 'main.js',
     // eslint-disable-next-line no-undef
     path: path.resolve(__dirname, 'dist'),
     clean: true,
