@@ -11,12 +11,18 @@ header {
   padding: 1px 10px;
 }
 
+h1 {
+  font-size: 28px;
+  color: red;
+}
+
 .content {
   width: 40%;
   margin-top: 5%;
   background-color: rgb(4, 4, 59);
   border: 2px solid rgb(197, 196, 196);
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
 .remove-icon {
@@ -57,17 +63,17 @@ input::placeholder {
 }
 
 .checkedContainer {
-  background-color: antiquewhite;
+  background-color: red;
 }
 
 #clear-content {
-  font-size: 18px;
-  color: rgb(79, 75, 75);
+  font-size: 24px;
+  color: white;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(251, 245, 245);
+  background-color: black;
   cursor: pointer;
 }
 
