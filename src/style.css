@@ -73,7 +73,7 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: green;
   cursor: pointer;
 }
 
