@@ -62,10 +62,10 @@ input::placeholder {
   border-bottom: 2px solid rgb(184, 181, 181);
   padding: 1px 10px;
   text-transform: uppercase;
-  background-color: rgb(192, 127, 48);
+  background-color: rgb(206, 158, 101);
 }
 
-.toDocontainer:nth-child(even) { background-color: #933434; }
+.toDocontainer:nth-child(even) { background-color: rgb(133, 79, 13); }
 
 .toDocontainer:hover {
   background-color: blue;
