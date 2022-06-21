@@ -3,13 +3,17 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 import updateLocal from './status_update.js'
 
-//Reference HTML
+//Selectors
 const myInput = document.querySelector('input');
 const clearContent = document.querySelector('#clear-content');
 const todoList = document.querySelector('#display-list');
+const checkbox = document.querySelectorAll('.checkbox');
+const editIcons = document.querySelectorAll('.edit-to-do');
+const todo_container = document.querySelectorAll('.toDocontainer');
+const removeList = document.querySelectorAll('.remove-icon');
 
-//Template class object
-class myObject {
+//Template class addItem
+class toDoitem {
   constructor (description, complited, index) {
     this.description = description;
     this.complited = complited;
@@ -18,6 +22,14 @@ class myObject {
 }
 
 const myTodoList = [];
+
+//Add event lister when enter is clicked while in input field
+myInput.addEventListener ('keypress', e => {
+  if (e.key === 'Enter' && myInput.value ) {
+    addTodo(myInput.value);
+    myInput.value = null;
+  }
+})
 
 const addTodo = toDovalue => {
   const toDocontainer = document.createElement('div');
@@ -30,25 +42,12 @@ const addTodo = toDovalue => {
   `
   todoList.appendChild(toDocontainer);
 
-
-  const checkbox = document.querySelectorAll('.checkbox');
-  checkbox.forEach(i => {
-    i.addEventListener('change', () => {
-      i.parentElement.classList.toggle('checkedContainer');
-      i.nextElementSibling.classList.toggle('check-to-do');
-      i.parentElement.lastElementChild.classList.toggle('trash-active');
-      i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disabled');
-      updateLocal();
-    })
-  }) 
-  
   //Add items to Local Storage
-  const object = new myObject (toDovalue, false, checkbox.length )
-  myTodoList.push(object);
+  const addItem = new toDoitem (toDovalue, false, checkbox.length )
+  myTodoList.push(addItem);
   localStorage.setItem ('List', JSON.stringify(myTodoList));
 
   //Edit todo list
-  const editIcons = document.querySelectorAll('.edit-to-do');
   editIcons.forEach (i => {
     i.addEventListener('click', () => {
       i.parentElement.classList.add('checkedContainer');
@@ -102,13 +101,7 @@ const removeTodo = (todo) => {
   window.location.reload();
 }
 
-//Add event lister when enter is clicked while in input field
-myInput.addEventListener ('keypress', e => {
-  if (e.key === 'Enter' && myInput.value ) {
-    addTodo(myInput.value);
-    myInput.value = null;
-  }
-})
+
 
 //Get data from local storage
 const getFromLocal = () => {
@@ -135,7 +128,6 @@ const getFromLocal = () => {
     })
   })
   //Get the checkbox
-  const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach(i => {
     i.addEventListener('change', () => {
       i.parentElement.classList.toggle('checkedContainer');
@@ -147,7 +139,6 @@ const getFromLocal = () => {
   })
 
   //Remove from the list
-  const removeList = document.querySelectorAll('.remove-icon');
   removeList.forEach (i => {
     i.addEventListener('click', () => {
       removeTodo(i.parentElement);
@@ -163,7 +154,6 @@ window.addEventListener('load',getFromLocal);
 //Clear All
 const clearAll = () => {
   const localData = JSON.parse(localStorage.getItem('List'));
-  const todo_container = document.querySelectorAll('.toDocontainer');
   todo_container.forEach (i => {
     if (i.classList.contains('checkedContainer')) {
       removeTodo(i);
