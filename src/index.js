@@ -47,21 +47,20 @@ const addTodo = toDovalue => {
   myTodoList.push(addItem);
   localStorage.setItem ('List', JSON.stringify(myTodoList));
 
-  //Edit todo list
+ /* //Edit todo list
   editIcons.forEach (i => {
     i.addEventListener('click', () => {
       i.parentElement.classList.add('checkedContainer');
       editTodo(toDocontainer, i.previousElementSibling);
     })
   })
-
   //Remove from the list
   const removeList = document.querySelectorAll('.remove-icon');
   removeList.forEach (i => {
     i.addEventListener('click', () => {
       removeTodo(i.parentElement);
     })
-  })
+  })  */
 };
 
 //Add editTodo function
